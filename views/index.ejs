@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Student Track</title>
+    
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+<script src="scripts/CloudABIS-ScanR.js"></script>
+<script src="scripts/CloudABIS-Helper.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to student track application</h1>
+        <div class="row">
+            <div class="col-4">
+                <form action="" method="POST">
+                    <div class="input-group mb-3">
+                    <input type="text" placeholder="Reg.ID" name="search" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <div class="input-group-append">
+                                <button class="input-group-text" id="basic-addon2" type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-8">
+                <form id="identifyForm" action="" method="POST">                    
+                    <div class="mt-10">
+                        <input type="button" name="biometricCapture" value="Biometric Search" class="btn btn-info" onclick="captureBiometric()">
+                        <input type="submit" name="identify" value="Identify" class="btn btn-success" id="Identify">
+                        <input type="hidden" name="templateXML" id="templateXML" value="">
+                        <label id="serverResult"></label>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a class="btn btn-primary float-right" href="/new"><i class="fa fa-plus"></i> Add New</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">        
+        <% if(data.length){ %>
+            <h3>Student List</h3>
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Student ID (Biometric ID)</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>DOB</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>   
+                <% for(var i = 0; i< data.length; i++) {%>
+                    <tr>
+                        <td><%= data[i].student_id %></td>
+                        <td><%= data[i].name %></td>
+                        <td><%= data[i].phone %></td>
+                        <td>
+                            <% 
+                                var dbDate = data[i].dob;
+                                var dateObj = new Date(dbDate);
+                            %>
+                            <%= dateObj.getDate() +"-"+ (dateObj.getMonth()+1) +"-"+ dateObj.getFullYear() %>
+                        </td>
+                        <td><a href="/edit/<%= data[i].student_id %>" class="btn btn-primary btn-sm">Edit</a> | <a href="/delete/<%= data[i].student_id %>" class="btn btn-danger btn-sm">Delete</a></td>
+                    </tr>
+                <% } %>
+            </table>
+        <% } else { %>
+            <h3>No record found!</h3>
+        <% } %>
+    </div>    
+</body>
+</html>
