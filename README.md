@@ -1,2 +1,2 @@
-# student_tracker
+# Student tracker
 A Node JS application.
