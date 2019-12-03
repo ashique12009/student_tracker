@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
     "ejs": "^2.7.4",
     "express": "^4.17.1",
     "express-flash": "0.0.2",
@@ -10,13 +11,20 @@
     "request": "^2.88.0"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon main.js"
   },
   "name": "student-track",
   "version": "1.0.0",
   "description": "\"This is a consumer app of biometric sdk api\"",
-  "main": "server.js",
-  "dependencies": {},
+  "main": "main.js",
+  "dependencies": {
+    "ashique-js-sdk": "^1.0.9",
+    "connect-flash": "^0.1.1",
+    "cors": "^2.8.5",
+    "express-flash-messages": "^0.1.1",
+    "request-promise": "^4.2.5",
+    "xmlhttprequest": "^1.8.0"
+  },
   "author": "Ashique",
   "license": "ISC"
 }

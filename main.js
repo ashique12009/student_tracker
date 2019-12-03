@@ -1,11 +1,21 @@
 const express = require('express');
-const app = express();
+const session = require('express-session');
+const flash = require('express-flash')
 const bodyParser = require('body-parser');
 const studentRouter = require('./routes/students');
+const app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
+
+app.set('trust proxy', 1); // trust first proxy
+app.use(session({
+    secret: 'sessionTesting',
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(flash());
 
 app.use('/', studentRouter);
 
