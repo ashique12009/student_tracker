@@ -18,7 +18,7 @@
   "description": "\"This is a consumer app of biometric sdk api\"",
   "main": "main.js",
   "dependencies": {
-    "ashique-js-sdk": "^1.0.9",
+    "ashique-js-sdk": "^1.0.12",
     "connect-flash": "^0.1.1",
     "cors": "^2.8.5",
     "express-flash-messages": "^0.1.1",

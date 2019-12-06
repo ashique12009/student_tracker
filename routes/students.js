@@ -9,7 +9,7 @@ var sess;
 /*Get home page*/
 router.get('/', function(req, res) {
     //SDK Call
-    CloudABISapi.apiManager.getToken(config).then((result) => {
+    CloudABISapi.apiManager.GetToken(config).then((result) => {
         var response = JSON.parse(result);
         if ( !req.session.access_token ) {
             req.session.access_token = response.access_token;
@@ -38,7 +38,7 @@ router.post('/', function(req, res){
     };
     
     //SDK Call
-    CloudABISapi.apiManager.identify(CloudABISBiometricRequest).then((result) => {
+    CloudABISapi.apiManager.Identify(CloudABISBiometricRequest).then((result) => {
         let msg = '';
         if ( result.OperationName == CloudABISapi.enumOperationName.EnumOperationName.Identify
         && result.OperationResult == CloudABISapi.cloudABISConstant.MATCH_FOUND) {
@@ -88,7 +88,7 @@ router.post('/new', function(req, res) {
     };
 
     //SDK Call
-    CloudABISapi.apiManager.register(CloudABISBiometricRequest).then((result) => {
+    CloudABISapi.apiManager.Register(CloudABISBiometricRequest).then((result) => {
         console.log(result);
         result = JSON.parse(result);
         let msg = '';
